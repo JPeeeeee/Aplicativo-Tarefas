@@ -21,13 +21,9 @@ export default function Home({ navigation }: any){
         .catch(error => console.log(error))
     }
 
-    useEffect(() => {
-        database.collection("Tarefas")
-    }, [])
-
     return (
         <View style={style.container}>
-            
+            <Text style={style.text}>Bem vindo à HomePage</Text>
             <Button name="Sair" color="crimson" onPress={() => SignOut()} />
         </View>
     )

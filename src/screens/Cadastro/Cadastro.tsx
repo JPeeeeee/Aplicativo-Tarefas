@@ -28,6 +28,7 @@ export default function Cadastro({ navigation }: any){
 
     return (
         <View style={style.container}>
+            <Text style={style.text}>Cadastre-se!</Text>
             <TextInput 
                 placeholder='Nome'
                 value={nome}

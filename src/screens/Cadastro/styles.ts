@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native"
+import theme from "../../global/globalStyles"
+
 const style = StyleSheet.create({
     container: {
         flex: 1,
@@ -15,6 +17,11 @@ const style = StyleSheet.create({
         padding: 10,
     },
 
+    text: {
+        fontSize: 35,
+        fontFamily: theme.fonts.Bold,
+        margin: 30
+    }
 })
 
 export default style
