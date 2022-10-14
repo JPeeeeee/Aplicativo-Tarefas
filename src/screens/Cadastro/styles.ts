@@ -15,10 +15,6 @@ const style = StyleSheet.create({
         padding: 10,
     },
 
-    text: {
-        fontSize: 40,
-
-    }
 })
 
 export default style
