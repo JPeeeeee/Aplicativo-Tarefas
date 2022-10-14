@@ -1,4 +1,6 @@
 import { StyleSheet } from "react-native"
+import theme from "../../global/globalStyles"
+
 const style = StyleSheet.create({
     container: {
         flex: 1,
@@ -8,7 +10,7 @@ const style = StyleSheet.create({
 
     input: {
         height: 50,
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#e0e0e0',
         borderRadius: 10,
         width: '70%',
         margin: 10,
@@ -17,7 +19,8 @@ const style = StyleSheet.create({
 
     text: {
         fontSize: 40,
-
+        fontFamily: theme.fonts.Bold,
+        margin: 30
     }
 })
 

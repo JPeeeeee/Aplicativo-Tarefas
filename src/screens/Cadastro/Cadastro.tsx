@@ -4,7 +4,9 @@ import Button from '../../components/button/Button'
 import style from './styles'
 
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import auth from '../../config/firebaseconfig'
+import auth from '../../config/firebaseAuthConfig'
+
+import theme from '../../global/globalStyles'
 
 export default function Cadastro({ navigation }: any){
     const [email, setEmail] = useState('')
@@ -39,18 +41,18 @@ export default function Cadastro({ navigation }: any){
                 style={style.input}
             />
             <TextInput 
-                placeholder='email'
+                placeholder='Email'
                 value={email}
                 onChangeText={value => setEmail(value)}
                 style={style.input}
             />
             <TextInput 
-                placeholder='senha'
+                placeholder='Senha'
                 value={senha}
                 onChangeText={value => setSenha(value)}
                 style={style.input}
             />
-            <Button name="Cadastrar" color="dodgerblue" onPress={() => createUser()} />
+            <Button name="Cadastrar" color={theme.colors.lightBrown} onPress={() => createUser()} />
         </View>
     )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import theme from '../../global/globalStyles'
 
 export default function Button(props: any){
     const style = StyleSheet.create({
@@ -15,7 +16,7 @@ export default function Button(props: any){
     })
 
     return (
-        <TouchableOpacity style={{width: '50%'}} onPress={props.onPress}>
+        <TouchableOpacity style={{width: '75%'}} onPress={props.onPress}>
             <View style={props.style ? props.style : style.button}>
                 <Text style={props.text ? props.text : {color: 'white', fontWeight: 'bold'}}>{props.name}</Text>
             </View>

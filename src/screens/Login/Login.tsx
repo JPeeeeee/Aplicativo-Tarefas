@@ -4,7 +4,8 @@ import Button from '../../components/button/Button'
 import style from './styles'
 
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import auth from '../../config/firebaseconfig'
+import auth from '../../config/firebaseAuthConfig'
+import theme from '../../global/globalStyles'
 
 export default function Login({ navigation }: any){
     const [email, setEmail] = useState('')
@@ -34,10 +35,10 @@ export default function Login({ navigation }: any){
                 onChangeText={value => setSenha(value)}
                 style={style.input}
             />
-            <Button onPress={() => SignIn()} name="Entrar" color="dodgerblue" />
+            <Button onPress={() => SignIn()} name="Entrar" color={theme.colors.lightBrown} />
             <Button onPress={() => navigation.navigate('Cadastro')} name="Cadastrar" 
             text={{
-                color: 'dodgerblue',
+                color: `${theme.colors.lightBrown}`,
                 fontWeight: 'bold'
             }} 
             
@@ -50,7 +51,7 @@ export default function Login({ navigation }: any){
                 borderRadius: 10,
                 height: 50,
                 borderWidth: 2,
-                borderColor: 'dodgerblue'
+                borderColor: `${theme.colors.lightBrown}`
             }} />
         </View>
     )

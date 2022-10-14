@@ -1,12 +1,17 @@
 import { signOut } from '@firebase/auth'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text } from 'react-native'
 import Button from '../../components/button/Button'
 import style from './styles'
 
-import auth from '../../config/firebaseconfig'
+import auth from '../../config/firebaseAuthConfig'
+import { FlatList } from 'react-native-gesture-handler'
+import database from '../../config/firebaseDbConfig'
+import { doc, getDoc } from '@firebase/firestore'
 
 export default function Home({ navigation }: any){
+    const [tarefa, setTarefa] = useState([])
+
     async function SignOut(){
         await signOut(auth)
         .then(() => {
@@ -16,8 +21,13 @@ export default function Home({ navigation }: any){
         .catch(error => console.log(error))
     }
 
+    useEffect(() => {
+        database.collection("Tarefas")
+    }, [])
+
     return (
         <View style={style.container}>
+            
             <Button name="Sair" color="crimson" onPress={() => SignOut()} />
         </View>
     )
