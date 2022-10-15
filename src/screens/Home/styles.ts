@@ -4,15 +4,30 @@ import theme from "../../global/globalStyles"
 const style = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '100%',
     },
 
     text: {
-        fontSize: 35,
+        fontSize: 25,
         fontFamily: theme.fonts.Bold,
-        margin: 30,
-        textAlign: 'center'
+        marginTop: 50,
+        marginBottom: 10,
+    },
+
+    flatlist: {
+        width: '100%',
+    },
+
+    task: {
+        justifyContent: 'center',
+        margin: 10,
+        padding: 10,
+        paddingLeft: 20,        
+        borderRadius: 10,
+        height: 70,
+        borderWidth: 1,
+        borderColor: theme.colors.lightGrey
     }
 })
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import Button from '../../components/button/Button'
 import style from './styles'
@@ -36,6 +36,7 @@ export default function Login({ navigation }: any){
                 style={style.input}
             />
             <Button onPress={() => SignIn()} name="Entrar" color={theme.colors.lightBrown} />
+            <Button onPress={() => navigation.navigate("Home")} name="Home" color={theme.colors.lightBrown} />
             <Button onPress={() => navigation.navigate('Cadastro')} name="Cadastrar" 
             text={{
                 color: `${theme.colors.lightBrown}`,

@@ -1,16 +1,28 @@
 import { signOut } from '@firebase/auth'
 import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import Button from '../../components/button/Button'
 import style from './styles'
 
 import auth from '../../config/firebaseAuthConfig'
-import { FlatList } from 'react-native-gesture-handler'
-import database from '../../config/firebaseDbConfig'
-import { doc, getDoc } from '@firebase/firestore'
+import db from '../../config/firebaseDbConfig'
+import { getDocs, collection, doc } from 'firebase/firestore'
+import theme from '../../global/globalStyles'
 
 export default function Home({ navigation }: any){
-    const [tarefa, setTarefa] = useState([])
+    const [tarefas, setTarefas] = useState<any[]>([])
+
+    useEffect(() => {
+        const getDatabase = async () => {
+            const data = await getDocs(collection(db, "Tarefas"))
+            data.docs.forEach((doc: any) => {
+                setTarefas((tarefas) => [...tarefas, doc.data()])
+            })
+        }
+        getDatabase()
+    }, [])
+
+    console.log(tarefas)
 
     async function SignOut(){
         await signOut(auth)
@@ -23,8 +35,22 @@ export default function Home({ navigation }: any){
 
     return (
         <View style={style.container}>
-            <Text style={style.text}>Bem vindo à HomePage</Text>
-            <Button name="Sair" color="crimson" onPress={() => SignOut()} />
+            <Text style={style.text}>Suas tarefas</Text>
+            <View style={style.flatlist}>
+                <FlatList
+                nestedScrollEnabled
+                    data={tarefas}
+                    renderItem={({item}: any) => {
+                        return (
+                            <View style={style.task}>
+                                <Text style={{
+                                    fontFamily: theme.fonts.Medium
+                                }}>{item.Description}</Text>
+                            </View>
+                        )
+                    }}
+                />
+            </View>
         </View>
     )
 }
