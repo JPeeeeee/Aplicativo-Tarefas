@@ -13,7 +13,7 @@ const style = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         height: 100,
-        marginTop: 20,
+        marginTop: 40,
         paddingHorizontal: 25
     },
 
