@@ -12,7 +12,8 @@ const theme = {
     colors: {
         creamWhite: '#FFFDD0',
         lightBrown: '#6E260E',
-        lightGrey: '#e0e0e0'
+        lightGrey: '#e0e0e0',
+        sandYellow: '#CDAA6D'
     }
 }
 
