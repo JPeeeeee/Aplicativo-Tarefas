@@ -7,6 +7,50 @@ const style = StyleSheet.create({
         alignItems: 'center',
     },
 
+    containerModal: {
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+
+    modal: {
+        backgroundColor: 'white',
+        borderTopRightRadius: 50,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderTopLeftRadius: 50,
+        width: '100%',
+        height: '50%',
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+    },
+
+    modalButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: theme.colors.lightBrown,
+        height: 50,
+        width: 50,
+        borderRadius: 100,
+    },
+
+    input: {
+        height: 60,
+        backgroundColor: '#e0e0e0',
+        borderRadius: 10,
+        width: '70%',
+        margin: 10,
+        padding: 10,
+        fontSize: 16,
+        fontFamily: theme.fonts.Medium
+    },
+
     nav: {
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -32,6 +76,7 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         margin: 10,
         borderRadius: 10,
+        maxWidth: '100%',
         height: 70,
         borderWidth: 1,
         borderColor: theme.colors.lightGrey
@@ -59,10 +104,12 @@ const style = StyleSheet.create({
     exit: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: theme.colors.sandYellow,
+        backgroundColor: 'white',
         height: 50,
         width: 50,
         borderRadius: 100,
+        borderWidth: 2,
+        borderColor: theme.colors.lightBrown
     },
 
     newTask: {

@@ -5,6 +5,7 @@ const theme = {
         Regular: 'Poppins-Regular',
         ExtraLight: 'Poppins-ExtraLight',
         Thin: 'Poppins-Thin',
+        SemiBold: 'Poppins-SemiBold',
         Bold: 'Poppins-Bold',
         MegaBold: 'Poppins-Black'
     },

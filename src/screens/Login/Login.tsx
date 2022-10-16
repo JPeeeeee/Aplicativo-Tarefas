@@ -35,25 +35,9 @@ export default function Login({ navigation }: any){
                 onChangeText={value => setSenha(value)}
                 style={style.input}
             />
-            <Button onPress={() => SignIn()} name="Entrar" color={theme.colors.lightBrown} />
-            <Button onPress={() => navigation.navigate("Home")} name="Home" color={theme.colors.lightBrown} />
-            <Button onPress={() => navigation.navigate('Cadastro')} name="Cadastrar" 
-            text={{
-                color: `${theme.colors.lightBrown}`,
-                fontWeight: 'bold'
-            }} 
-            
-            style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'white',
-                margin: 10,
-                padding: 10,        
-                borderRadius: 10,
-                height: 50,
-                borderWidth: 2,
-                borderColor: `${theme.colors.lightBrown}`
-            }} />
+            <Button onPress={() => SignIn()} name="Entrar" mode="dark" />
+            <Button onPress={() => navigation.navigate("Home")} name="Home" mode="dark" />
+            <Button onPress={() => navigation.navigate('Cadastro')} name="Cadastrar" mode="light" />
         </View>
     )
 }
