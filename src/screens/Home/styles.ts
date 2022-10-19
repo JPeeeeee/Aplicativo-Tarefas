@@ -104,12 +104,17 @@ const style = StyleSheet.create({
     exit: {
         alignItems: 'center',
         justifyContent: 'center',
+        shadowColor: 'black',
+        shadowOffset: {
+            width: 0,
+            height: 10,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.5,
+        elevation: 5,
         backgroundColor: 'white',
-        height: 50,
-        width: 50,
+        padding: 17,
         borderRadius: 100,
-        borderWidth: 2,
-        borderColor: theme.colors.lightBrown
     },
 
     newTask: {
@@ -120,9 +125,8 @@ const style = StyleSheet.create({
         width: 60,
         borderRadius: 100,
         position: 'absolute',
-        bottom: 30,
-        left: 30,
-        zIndex: 2,
+        bottom: 130,
+        left: 20,
         elevation: 5,
         shadowColor: '#52006A',
     }

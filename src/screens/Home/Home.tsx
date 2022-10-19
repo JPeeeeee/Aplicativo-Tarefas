@@ -29,7 +29,7 @@ export default function Home({ navigation }: any){
     const [modalData, setModalData] = useState({
         Description: '',
         id: '',
-        Done: false,
+        Done: Boolean,
     })
     const [modalDescription, setModalDescription] = useState('')
 
@@ -54,19 +54,18 @@ export default function Home({ navigation }: any){
     async function SignOut(){
         await signOut(auth)
         .then(() => {
-            console.log('saiu!')
             navigation.navigate("Login")
         })
         .catch(error => console.log(error))
     }
 
-    const newDoneMarker = (item: any) => {
+    const newDoneMarker = async (item: any) => {
         if (item.Done === true){
-            updateDoc(doc(db, "Tarefas", `${item.id}`), {
+            await updateDoc(doc(db, "Tarefas", `${item.id}`), {
                 Done: false
             })
         } else{
-            updateDoc(doc(db, "Tarefas", `${item.id}`), {
+            await updateDoc(doc(db, "Tarefas", `${item.id}`), {
                 Done: true
             })
         }
@@ -167,8 +166,6 @@ export default function Home({ navigation }: any){
                     nestedScrollEnabled
                     data={tarefas}
                     renderItem={renderItem}
-                    onRefresh={() => setTimeout(() => {onRefresh}, 200)}
-                    refreshing={isRefreshing}
                     keyExtractor={item => item.id}
                 />
             </View>

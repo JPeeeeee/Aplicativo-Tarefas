@@ -13,8 +13,7 @@ export default function Login({ navigation }: any){
 
     async function SignIn(){
         await signInWithEmailAndPassword(auth, email, senha)
-        .then(value => {
-            console.log(value.user.email)
+        .then(() => {
             navigation.navigate("Home")
         })
         .catch(() => alert('Email ou senha inválidos!'))

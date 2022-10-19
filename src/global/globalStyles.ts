@@ -14,7 +14,8 @@ const theme = {
         creamWhite: '#FFFDD0',
         lightBrown: '#6E260E',
         lightGrey: '#e0e0e0',
-        sandYellow: '#CDAA6D'
+        sandYellow: '#CDAA6D',
+        grey: '#989898'
     }
 }
 
