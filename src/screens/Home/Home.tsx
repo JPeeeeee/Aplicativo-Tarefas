@@ -13,7 +13,7 @@ import style from './styles'
 import { signOut } from '@firebase/auth'
 import auth from '../../config/firebaseAuthConfig'
 import db from '../../config/firebaseDbConfig'
-import { getDocs, collection, doc, updateDoc } from 'firebase/firestore'
+import { getDocs, collection, doc, updateDoc, addDoc } from 'firebase/firestore'
 import theme from '../../global/globalStyles'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -25,11 +25,12 @@ import { faPencil } from '@fortawesome/free-solid-svg-icons/faPencil'
 export default function Home({ navigation }: any){
     const [tarefas, setTarefas] = useState<any[]>([])
     const [isRefreshing, setIsRefreshing] = useState(false)
-    const [modalVisible, setModalVisible] = useState(false)
+    const [modalEditVisible, setModalEditVisible] = useState(false)
+    const [modalCreateVisible, setModalCreateVisible] = useState(false)
     const [modalData, setModalData] = useState({
         Description: '',
         id: '',
-        Done: Boolean,
+        Done: false,
     })
     const [modalDescription, setModalDescription] = useState('')
 
@@ -51,7 +52,7 @@ export default function Home({ navigation }: any){
         getDatabase()
     }
 
-    async function SignOut(){
+    const SignOut = async () => {
         await signOut(auth)
         .then(() => {
             navigation.navigate("Login")
@@ -72,15 +73,30 @@ export default function Home({ navigation }: any){
         onRefresh()
     }
 
-    const newDescription = (item: any) => {
-        updateDoc(doc(db, "Tarefas", `${item.id}`), {
+    const newDescription = async (item: any) => {
+        await updateDoc(doc(db, "Tarefas", `${item.id}`), {
             Description: modalDescription
         })
         onRefresh()
     }
 
+    const newTask = async () => {
+        let data = {
+            Description: modalDescription,
+            Done: false,
+            id: ''
+        }
+        await addDoc(collection(db, "Tarefas"), data)
+        .then(async (docRef) => {
+            await updateDoc(doc(db, "Tarefas", docRef.id), {
+                id: docRef.id
+            })
+        })
+        onRefresh()
+    }
+
     const editarTarefa = (item: any) => {
-        setModalVisible(true)
+        setModalEditVisible(true)
         setModalData(item)
     }
 
@@ -115,9 +131,9 @@ export default function Home({ navigation }: any){
             <Modal
                 animationType="slide"
                 transparent={true}
-                visible={modalVisible}
+                visible={modalEditVisible}
                 onRequestClose={() => {
-                    setModalVisible(!modalVisible);
+                    setModalEditVisible(!modalEditVisible);
                 }}
             >
                 <View style={style.containerModal}>
@@ -141,16 +157,53 @@ export default function Home({ navigation }: any){
                             alignItems: 'center',
                             flexDirection: 'row'
                         }}>
-                            <Button name="Cancelar" onPress={() => setModalVisible(!modalVisible)} mode="light" />
+                            <Button name="Cancelar" onPress={() => setModalEditVisible(!modalEditVisible)} mode="light" />
                             <Button name="Salvar" mode="dark" onPress={() => { 
-                                setModalVisible(!modalVisible)
+                                setModalEditVisible(!modalEditVisible)
                                 newDescription(modalData)
                             }} />
                         </View>
                     </View>
                 </View>
             </Modal>
-            <TouchableOpacity style={style.newTask}>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalCreateVisible}
+                onRequestClose={() => {
+                    setModalCreateVisible(!modalCreateVisible);
+                }}
+            >
+                <View style={style.containerModal}>
+                    <View style={style.modal}>
+                        <Text style={{
+                            fontSize: 30,
+                            fontFamily: theme.fonts.Bold,
+                            marginTop: '10%', 
+                        }}>
+                            Criar tarefa
+                        </Text>
+                        <TextInput
+                            onChangeText={(text) => setModalDescription(text)}
+                            style={style.input}
+                            placeholder="Nova descrição"
+                        />
+                        <View style={{
+                            width: '60%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'row'
+                        }}>
+                            <Button name="Cancelar" onPress={() => setModalCreateVisible(!modalCreateVisible)} mode="light" />
+                            <Button name="Criar" mode="dark" onPress={() => { 
+                                setModalCreateVisible(!modalCreateVisible)
+                                newTask()
+                            }} />
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+            <TouchableOpacity style={style.newTask} onPress={() => setModalCreateVisible(true)}>
                 <FontAwesomeIcon icon={faPlus} color={'white'} size={20} />
             </TouchableOpacity>
             <View style={style.nav}>
